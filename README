@@ -1,3 +1,26 @@
-Setup commands:
+
+Bluetooth Setup:
 sudo apt-get install pi-bluetooth
 sudo apt-get install bluetooth
+sudo apt-get install bluez
+sudo apt-get install python-bluez
+
+RF outlet setup:
+install wiring pi:
+git clone git://git.drogon.net/wiringPi
+cd wiringPi
+./build
+
+install driver:
+sudo git clone https://github.com/timleland/rfoutlet.git /var/www/rfoutlet
+sudo chown root.root /var/www/rfoutlet/codesend
+sudo chmod 4755 /var/www/rfoutlet/codesend
+
+use RFSniffer to find new outlets:
+sudo /var/www/rfoutlet/RFSniffer
+
+and run:
+./codesend <code> -I 198 -p 0
+
+download MagicMirror:
+https://github.com/MichMich/MagicMirror

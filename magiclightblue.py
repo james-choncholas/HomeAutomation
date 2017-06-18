@@ -1,5 +1,4 @@
-import pexpect
-from subprocess import Popen, call
+from subprocess import call
 import time
 
 class MagicLightBlue:
