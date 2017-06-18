@@ -1,0 +1,3 @@
+Setup commands:
+sudo apt-get install pi-bluetooth
+sudo apt-get install bluetooth

@@ -1,7 +1,8 @@
 import lightingsystem
-from subprocess import Popen, call
-import time
+
 import sys
+from subprocess import call
+import time
 import bluetooth
 
 call(['sudo', 'hciconfig', 'hci0', 'down'])
@@ -11,16 +12,12 @@ lighting = lightingsystem.LightingSystem()
 
 
 while True:
-    result = bluetooth.lookup_name("8C:1A:BF:92:EC:85", timeout=2)
+    result = bluetooth.lookup_name("8C:1A:BF:92:EC:85", timeout=10)
 
     if (result != None):
-        print "found!"
+        lighting.tick()
+        time.sleep(5)
 
-        if (not lighting.on):
-            lighting.systemOn()
     else:
-        print "gone"
-        if (lighting.on):
+        if (lighting.mode != 'Off'):
             lighting.systemOff()
-
-    time.sleep(5)
