@@ -1,8 +1,8 @@
 import magiclightblue
-
+import etekCityOutlet
 from datetime import datetime
 
-class LightingSystem:
+class Home:
 
     mode = 'Off'
     sideL = magiclightblue.MagicLightBlue("04:a3:16:a7:3b:4e", 'hci0')
@@ -10,19 +10,24 @@ class LightingSystem:
     candleS = magiclightblue.MagicLightBlue("88:c2:55:a3:07:89", 'hci0')
     candleM = magiclightblue.MagicLightBlue("88:c2:55:a3:41:0f", 'hci0')
     candleL = magiclightblue.MagicLightBlue("88:c2:55:a3:70:6a", 'hci0')
+    outlet1 = etekCityOutlet.EtekCityOutlet('4543795', '4543804')
+    outlet2 = etekCityOutlet.EtekCityOutlet('4543939', '4543948')
+    outlet3 = etekCityOutlet.EtekCityOutlet('4544259', '4544268')
+    outlet4 = etekCityOutlet.EtekCityOutlet('4545795', '4545804')
+    outlet5 = etekCityOutlet.EtekCityOutlet('4551939', '4551948')
 
     def __init__(self):
         self.mode = 'Off'
 
     def tick(self):
         oldMode = self.mode
-        self.setMode()
+        self.computeMode()
 
         if(oldMode != self.mode):
-            self.setLighting(self.mode)
+            self.setMode(self.mode)
 
 
-    def setMode(self):
+    def computeMode(self):
         if(datetime.now().hour < 5):
             self.mode = 'Night'
         elif(datetime.now().hour < 10):
@@ -34,31 +39,51 @@ class LightingSystem:
         else:
             self.mode = 'Night'
 
-    def setLighting(self, mode):
+    def setMode(self, mode):
         if(mode == 'Morning'):
             self.sideL.controlColor('00', 'FF', '77')
             self.sideR.controlColor('00', 'FF', '77')
             self.candleS.controlColor('00', 'FF', '44')
             self.candleM.controlColor('00', 'FF', '55')
             self.candleL.controlColor('00', 'FF', '66')
+            self.outlet1.turnOn()
+            self.outlet2.turnOn()
+            self.outlet3.turnOn()
+            self.outlet4.turnOn()
+            self.outlet5.turnOn()
         elif(mode == 'Light'):
             self.sideL.controlWhite('99')
             self.sideR.controlWhite('99')
             self.candleS.controlColor('FF', 'FF', 'FF')
             self.candleM.controlColor('FF', 'FF', 'FF')
             self.candleL.controlColor('FF', 'FF', 'FF')
+            self.outlet1.turnOn()
+            self.outlet2.turnOn()
+            self.outlet3.turnOn()
+            self.outlet4.turnOn()
+            self.outlet5.turnOn()
         elif(mode == 'Evening'):
             self.sideL.controlColor('FF', '50', '20')
             self.sideR.controlColor('FF', '50', '20')
             self.candleS.fade('25', '50')
             self.candleM.fade('25', '50')
             self.candleL.fade('25', '50')
+            self.outlet1.turnOn()
+            self.outlet2.turnOn()
+            self.outlet3.turnOn()
+            self.outlet4.turnOn()
+            self.outlet5.turnOn()
         elif(mode == 'Night'):
-            self.sideL.controlColor('99', '00', '00')
-            self.sideR.controlColor('99', '00', '00')
+            self.sideL.controlColor('44', '00', '00')
+            self.sideR.controlColor('44', '00', '00')
             self.candleS.fade('2B', '20')
             self.candleM.fade('2B', '20')
             self.candleL.fade('2B', '20')
+            self.outlet1.turnOff()
+            self.outlet2.turnOff()
+            self.outlet3.turnOff()
+            self.outlet4.turnOff()
+            self.outlet5.turnOff()
 
     def systemOff(self):
         print "turning system off"
@@ -68,6 +93,11 @@ class LightingSystem:
         self.candleS.controlColor('00','00','00')
         self.candleM.controlColor('00','00','00')
         self.candleL.controlColor('00','00','00')
+        self.outlet1.turnOff()
+        self.outlet2.turnOff()
+        self.outlet3.turnOff()
+        self.outlet4.turnOff()
+        self.outlet5.turnOff()
         print "system off"
 
     # rgb is hex string between '00' and 'FF'
