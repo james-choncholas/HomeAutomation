@@ -14,10 +14,7 @@ home = home.Home()
 while True:
     result = bluetooth.lookup_name("8C:1A:BF:92:EC:85", timeout=10)
 
-    if (result != None):
-        home.tick()
-        time.sleep(5)
+    home.tick(result != None)
 
-    else:
-        if (home.mode != 'Off'):
-            home.systemOff()
+    if(result != None):
+        time.sleep(5)
