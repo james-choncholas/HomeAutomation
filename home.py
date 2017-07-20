@@ -1,9 +1,10 @@
 import lighting
 import powerOutlets
+from mode import Mode
 from datetime import datetime
 
 class Home:
-    mode = 'Off'
+    mode = Mode.Off
     powerOutlets = powerOutlets.PowerOutlets()
     lighting = lighting.Lighting()
 
@@ -22,24 +23,29 @@ class Home:
         now = datetime.now()
 
         # alarms take priority, doesn't matter if we isHome
-        if((now.hour == 7 and now.minute > 40) or (now.hour == 8 and now.minute < 20)):
-            self.mode = 'Morning'
+        if(now.hour == 7 and now.minute < 25):
+            self.mode = Mode.Morning
+            return
+        if(now.hour == 7 and now.minute > 25 and now.minute < 30):
+            self.mode = Mode.Alarm
             return
 
         # always set the system mode if we're home
         if(isHome):
             if(now.hour < 5):
-                self.mode = 'Night'
+                self.mode = Mode.Night
             elif(now.hour < 10):
-                self.mode = 'Morning'
+                self.mode = Mode.Morning
             elif (now.hour < 20):
-                self.mode = 'Light'
+                self.mode = Mode.Light
+            elif (now.hour < 22 and now.minute < 30):
+                self.mode = Mode.PreEvening
             elif (now.hour < 23):
-                self.mode = 'Evening'
+                self.mode = Mode.Evening
             else:
-                self.mode = 'Night'
+                self.mode = Mode.Night
         else:
-            self.mode = 'Off'
+            self.mode = Mode.Off
 
     def setMode(self, mode):
         # set the lighting last because it takes a while to skip unfound btle devs (candles)

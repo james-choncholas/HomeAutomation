@@ -1,4 +1,5 @@
 import etekCityOutlet
+from mode import Mode
 
 class PowerOutlets:
     outlet1 = etekCityOutlet.EtekCityOutlet('4543795', '4543804')
@@ -11,25 +12,25 @@ class PowerOutlets:
         return
 
     def setMode(self, mode):
-        if(mode == 'Morning'):
+        if(mode == Mode.Morning):
             self.outlet1.turnOn()
             self.outlet2.turnOn()
             self.outlet3.turnOn()
             self.outlet4.turnOn()
             self.outlet5.turnOn()
-        elif(mode == 'Light'):
+        elif(mode == Mode.Light):
             self.outlet1.turnOn()
             self.outlet2.turnOn()
             self.outlet3.turnOn()
             self.outlet4.turnOn()
             self.outlet5.turnOn()
-        elif(mode == 'Evening'):
+        elif(mode == Mode.PreEvening or mode == Mode.Evening):
             self.outlet1.turnOn()
             self.outlet2.turnOn()
             self.outlet3.turnOn()
             self.outlet4.turnOn()
             self.outlet5.turnOn()
-        elif(mode == 'Night'):
+        elif(mode == Mode.Night):
             self.outlet1.turnOff()
             self.outlet2.turnOff()
             self.outlet3.turnOff()
