@@ -8,11 +8,13 @@ sudo apt-get install python-bluez
 RF outlet setup:
 install wiring pi:
 git clone git://git.drogon.net/wiringPi
+    -- or $ cd wiringPi/
 cd wiringPi
 ./build
 
 install driver:
 sudo git clone https://github.com/timleland/rfoutlet.git /var/www/rfoutlet
+    -- or $ sudo cp -r rfoutlet/ /var/www/
 sudo chown root.root /var/www/rfoutlet/codesend
 sudo chmod 4755 /var/www/rfoutlet/codesend
 
