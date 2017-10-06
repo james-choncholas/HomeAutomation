@@ -18,11 +18,12 @@ sudo git clone https://github.com/timleland/rfoutlet.git /var/www/rfoutlet
 sudo chown root.root /var/www/rfoutlet/codesend
 sudo chmod 4755 /var/www/rfoutlet/codesend
 
-use RFSniffer to find new outlets:
+use RFSniffer to find new outlet codes:
 sudo /var/www/rfoutlet/RFSniffer
 
 and run:
-./codesend <code> -I 198 -p 0
+./codesend <code found> -I 198 -p 0
 
-download MagicMirror:
-https://github.com/MichMich/MagicMirror
+Disable onboard wifi because it conflicts with bluetooth
+add dtoverlay=pi3-disable-wifi
+to the file /boot/config.txt
