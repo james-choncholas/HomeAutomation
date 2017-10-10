@@ -2,6 +2,7 @@ import lighting
 import powerOutlets
 from mode import Mode
 from datetime import datetime
+import time
 
 class Home:
     mode = Mode.Off
@@ -50,4 +51,5 @@ class Home:
     def setMode(self, mode):
         # set the lighting last because it takes a while to skip unfound btle devs (candles)
         self.powerOutlets.setMode(mode)
+	time.sleep(1)
         self.lighting.setMode(mode)
