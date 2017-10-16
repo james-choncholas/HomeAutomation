@@ -23,8 +23,8 @@ class Home:
     def computeMode(self, isHome):
         now = datetime.now()
 
-        # alarms take priority, doesn't matter if we isHome
-        if(now.hour == 7 and now.minute < 25):
+        # alarms take priority, doesn't matter if we isHome, weekday index starts at 0 = Monday
+        if(now.hour == 7 and now.minute < 25 and now.weekday() < 4):
             self.mode = Mode.Morning
             return
         if(now.hour == 7 and now.minute > 25 and now.minute < 30):
