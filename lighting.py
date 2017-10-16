@@ -25,15 +25,15 @@ class Lighting:
         elif(mode == Mode.Light):
             self.sideL.controlWhite('99')
             self.sideR.controlWhite('99')
-            self.candleS.controlColor('FF', 'FF', 'FF')
-            #self.candleM.controlColor('FF', 'FF', 'FF')
-            #self.candleL.controlColor('FF', 'FF', 'FF')
+            self.candleS.controlColor('00', '00', '00')
+            #self.candleM.controlColor('00', '00', '00')
+            #self.candleL.controlColor('00', '00', '00')
         elif(mode == Mode.PreEvening):
             self.sideL.controlColor('FF', '50', '20')
             self.sideR.controlColor('FF', '50', '20')
-            self.candleS.mode('25', '50')
-            #self.candleM.mode('25', '50')
-            #self.candleL.mode('25', '50')
+            self.candleS.fade(self.sunsetColors, '1a')
+            #self.candleM.fade(self.sunsetColors, '1a')
+            #self.candleL.fade(self.sunsetColors, '1a')
         elif(mode == Mode.Evening):
             self.sideL.fade(self.sunsetColors, '1a')
             self.sideR.fade(self.sunsetColors, '1a')
@@ -43,9 +43,9 @@ class Lighting:
         elif(mode == Mode.Night):
             self.sideL.controlColor('44', '00', '00')
             self.sideR.controlColor('44', '00', '00')
-            self.candleS.mode('2B', '20')
-            #self.candleM.mode('2B', '20')
-            #self.candleL.mode('2B', '20')
+            self.candleS.fade(self.purpleColors, '1a')
+            #self.candleM.fade(self.purpleColors, '1a')
+            #self.candleL.fade(self.purpleColors, '1a')
         elif(mode == Mode.Alarm):
             self.sideL.mode('26', '01')
             self.sideR.mode('26', '01')

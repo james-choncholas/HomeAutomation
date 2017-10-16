@@ -23,7 +23,6 @@ class MagicLightBlue:
         self.controlWhite('FF')
 
     def controlColor(self, red, green, blue):
-        print('setting color')
         a_str = self.start_single_color + red + green + blue + '00' + self.end_rgb_cmd + self.end_single_color
         self.send(a_str)
 
