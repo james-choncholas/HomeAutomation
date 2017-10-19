@@ -64,4 +64,8 @@ class MagicLightBlue:
         try:
             call(['sudo', 'gatttool', '-b', self.my_mac, '--char-write-req', '-a', self.bt_handle, '-n', a_string])
         except:
-            pass
+            # try again
+            try:
+                call(['sudo', 'gatttool', '-b', self.my_mac, '--char-write-req', '-a', self.bt_handle, '-n', a_string])
+            except:
+                pass

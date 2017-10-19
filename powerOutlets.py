@@ -31,11 +31,11 @@ class PowerOutlets:
             self.outlet4.turnOn()
             self.outlet5.turnOn()
         elif(mode == Mode.Night):
-            self.outlet1.turnOff()
-            self.outlet2.turnOff()
-            self.outlet3.turnOff()
-            self.outlet4.turnOff()
-            self.outlet5.turnOff()
+            self.outlet1.turnOn()
+            self.outlet2.turnOn()
+            self.outlet3.turnOn()
+            self.outlet4.turnOn()
+            self.outlet5.turnOn()
         else:
             self.outlet1.turnOff()
             self.outlet2.turnOff()
