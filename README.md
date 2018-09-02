@@ -15,14 +15,14 @@ RF outlet setup:
 install wiring pi:
 ```
 git clone git://git.drogon.net/wiringPi
-    -- or use folder in this repo (I know how to use git submodules... this is safer)
-wiringPi/build
+    -- or $ cd wiringPi/
+./build
 ```
 
 install driver:
 ```
 sudo git clone https://github.com/timleland/rfoutlet.git /var/www/rfoutlet
-    -- or $ sudo cp -r rfoutlet/ /var/www/
+    -- or $ sudo cp -r rfoutlet/ /var/www/rfoutlet/
 sudo chown root.root /var/www/rfoutlet/codesend
 sudo chmod 4755 /var/www/rfoutlet/codesend
 ```
@@ -36,3 +36,6 @@ sudo /var/www/rfoutlet/RFSniffer
 Disable onboard wifi (on RPI3) because it conflicts with bluetooth   
 add dtoverlay=pi3-disable-wifi   
 to the file /boot/config.txt   
+
+Add the following line to /etc/rc.local
+(sleep 10 && python /home/pi/HomeAutomation/automation.py) &

@@ -48,7 +48,5 @@ class Home:
             self.mode = Mode.Off
 
     def setMode(self, mode):
-        # set the lighting last because it takes a while to skip unfound btle devs (candles)
-        self.powerOutlets.setMode(mode)
-	time.sleep(1)
         self.lighting.setMode(mode)
+        self.powerOutlets.setMode(mode)
